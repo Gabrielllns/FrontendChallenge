@@ -1,0 +1,8 @@
+<div class="justify-content-space-evenly">
+    <div class="section-battle" *ngFor="let battle of battles">
+        <div class="card" *ngFor="let teamBattle of battle" [ngClass]="{ 'winner' : teamBattle.isWinner }">
+            <span><b>Nome:</b> {{ teamBattle.name }}</span>
+            <span><b>Pontuação:</b> {{ teamBattle.score }}</span>
+        </div>
+    </div>
+</div>

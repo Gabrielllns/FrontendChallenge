@@ -1,0 +1,12 @@
+@import "../../../variables.scss";
+
+.section-battle {
+    width: 25%;
+    margin: 0 10px;
+    border-radius: 10px;
+    background: $color-grey-light;
+}
+
+.winner {
+    background-color: #a6ffa6;
+}

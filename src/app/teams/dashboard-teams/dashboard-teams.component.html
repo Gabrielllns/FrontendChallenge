@@ -1,0 +1,95 @@
+<div class="card-container">
+    {{ stepBattle }}
+    <section *ngIf="isLimitValidNumberTeams() && battles.length == 0">
+        <form [formGroup]="formTeam" autocomplete="off" class="form-inline">
+            <div>
+                <label>Informe o nome da equipe:</label>
+                <input type="text" formControlName="newTeam" autofocus>
+                <small>Máx: 20 caracteres</small>
+            </div>
+
+            <div class="text-center">
+                <button class="success" [disabled]="!formTeam.valid || !isLimitValidNumberTeams()"
+                    (click)="addTeam(formTeam)" title="Adicionar">
+                    Adicionar
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section *ngIf="battles.length == 0">
+        <div class="justify-content-space-between align-items-center">
+            <h4>Número de equipes restantes: {{ maxTeams - teams.length }}</h4>
+
+            <button class="info no-margin" (click)="sortBattles(teams)" title="Sortear Confrontos"
+                *ngIf="(teams.length > 0 && isValidMod(teams))">
+                Sortear Confrontos
+            </button>
+        </div>
+
+        <div class="justify-content-center">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let team of teams">
+                        <td>{{ team.id }}</td>
+                        <td>{{ team.name }}</td>
+                        <td>
+                            <button class="danger no-margin" title="Remover" (click)="deleteTeam(team)">
+                                Remover
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section *ngIf="battles.length > 0">
+        <section class="text-center" *ngIf="historyBattles.length > 0">
+            <div class="format-history" *ngFor="let historyBattle of historyBattles">
+                <app-card-teams [battles]="historyBattle"></app-card-teams>
+            </div>
+
+            <div *ngIf="teams.length == 1">
+                <h1>EQUIPE VENCEDORA: {{ teams[0].name }}</h1>
+
+                <button class="success" (click)="finishSimulate()" title="Finalizar Simulação">
+                    Finalizar Simulação
+                </button>
+            </div>
+        </section>
+
+        <section class="format-buttons" *ngIf="battles.length > 0">
+            <button class="success" (click)="initSimulate(battles, true)" title="Iniciar Simulação Automática"
+                *ngIf="stepBattle == -1 && teams.length > 1">
+                Iniciar Simulação Automática
+            </button>
+
+            <button class="success" (click)="initSimulate(battles, false)" title="Iniciar Simulação por Etapas"
+                *ngIf="stepBattle == -1 && teams.length > 1">
+                Iniciar Simulação por Etapas
+            </button>
+
+            <button class="success" (click)="initSimulate(battles, false)" title="Iniciar Simulação"
+                *ngIf="stepBattle == 0 && teams.length > 1 && !isAutomatic">
+                Continuar Simulação
+            </button>
+
+            <button class="info" (click)="nextStep(teams)" title="Próxima Etapa"
+                *ngIf="stepBattle == 1 && teams.length >= 2 && !isAutomatic">
+                Próxima Etapa
+            </button>
+        </section>
+
+        <section *ngIf="teams.length != 1 && !isAutomatic && stepBattle != 1">
+            <app-card-teams [battles]="battles"></app-card-teams>
+        </section>
+    </section>
+</div>

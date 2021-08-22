@@ -1,0 +1,16 @@
+@import "./../../../variables.scss";
+
+.errors {
+    color: $color-dark-red;
+    border-color: $color-dark;
+}
+
+h1.error-title {
+    font-size: 8rem;
+    margin: 1rem;
+}
+
+h6.error-subtitle {
+    font-size: 3rem;
+    margin: 1rem;
+}

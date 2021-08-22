@@ -1,0 +1,174 @@
+@import "variables.scss";
+
+:host {
+    font-size: 14px;
+    color: $color-dark;
+    box-sizing: border-box;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+button {
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px 12px;
+    margin: 5px 5px 5px 0;
+    text-decoration: none;
+    height: fit-content;
+    display: inline-block;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button.info {
+    @extend button;
+    color: $color-white;
+    background-color: $color-blue;
+}
+
+button.alert {
+    @extend button;
+    color: $color-black;
+    background-color: $color-yellow;
+}
+
+button.danger {
+    @extend button;
+    color: $color-white;
+    background-color: $color-red;
+}
+
+button.success {
+    @extend button;
+    color: $color-white;
+    background-color: $color-green;
+}
+
+input {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid $color-grey;
+}
+
+.ng-invalid.ng-touched {
+    border-color: $color-red;
+}
+
+.toolbar {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    padding: 0 20px;
+    font-weight: 600;
+    color: $color-white;
+    position: absolute;
+    align-items: center;
+    background-color: $color-blue-light;
+}
+
+.content {
+    display: flex;
+    padding: 0 16px;
+    flex-direction: column;
+    margin: 85px auto 30px;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-content-center {
+    @extend .flex;
+    justify-content: center;
+}
+
+.justify-content-space-evenly {
+    @extend .flex;
+    justify-content: space-evenly;
+}
+
+.justify-content-space-between {
+    @extend .flex;
+    justify-content: space-between;
+}
+
+.align-items-center {
+    @extend .flex;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.card-container {
+    margin-top: 16px;
+}
+
+.card {
+    margin: 8px;
+    padding: 10px;
+    display: grid;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color-dark;
+    background-color: $color-light;
+}
+
+a {
+    color: $color-white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $color-light;
+}
+
+.table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.table td,
+.table th {
+    padding: 5px;
+    border: 1px solid $color-grey-light;
+}
+
+.table tr:hover {
+    background-color: $color-grey-light;
+}
+
+.table th {
+    color: $color-white;
+    background-color: $color-blue-light;
+}
